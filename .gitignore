@@ -1,11 +1,20 @@
+# Python
 __pycache__/
 *.pyc
 
+# Virtual environment
 .venv/
 
+# Model checkpoints
 checkpoints/*.pt
 checkpoints/*.pth
 
+# Personal files
 *.docx
 *.pdf
 *.zip
+
+# Backup folders
+baseline_backup/
+final_backup/
+files/
