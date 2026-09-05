@@ -1,0 +1,133 @@
+expert,regime,feature,mean_abs_shap
+lstm,bull,Log return,2.2404159371524208e-07
+lstm,bull,Volatility 10d,8.515402670575057e-07
+lstm,bull,Volatility 30d,1.9809757667025913e-07
+lstm,bull,RSI-14,8.388428833782541e-07
+lstm,bull,MACD,2.5064226365233885e-07
+lstm,bull,MACD signal,5.891780389062375e-07
+lstm,bull,Volume ratio,2.6626685562481734e-07
+lstm,bull,BB width,5.149051988237741e-07
+lstm,bull,Regime: bull,7.624295055371171e-06
+lstm,bull,Regime: bear,1.2705777867427614e-07
+lstm,bull,Regime: high-vol,1.7877421827768186e-05
+lstm,bear,Log return,0.0
+lstm,bear,Volatility 10d,0.0
+lstm,bear,Volatility 30d,0.0
+lstm,bear,RSI-14,0.0
+lstm,bear,MACD,0.0
+lstm,bear,MACD signal,0.0
+lstm,bear,Volume ratio,0.0
+lstm,bear,BB width,0.0
+lstm,bear,Regime: bull,0.0
+lstm,bear,Regime: bear,0.0
+lstm,bear,Regime: high-vol,0.0
+lstm,high-vol,Log return,6.558225390348134e-08
+lstm,high-vol,Volatility 10d,3.3845878792551915e-07
+lstm,high-vol,Volatility 30d,1.207212984698919e-07
+lstm,high-vol,RSI-14,3.287828931537417e-07
+lstm,high-vol,MACD,6.365757241776224e-08
+lstm,high-vol,MACD signal,1.3165321571514262e-07
+lstm,high-vol,Volume ratio,9.013705192537326e-08
+lstm,high-vol,BB width,1.3639191736034988e-07
+lstm,high-vol,Regime: bull,5.606425364650016e-06
+lstm,high-vol,Regime: bear,7.624198324285596e-09
+lstm,high-vol,Regime: high-vol,1.2869082945983925e-05
+transformer,bull,Log return,8.590533371057665e-05
+transformer,bull,Volatility 10d,8.592940012811473e-05
+transformer,bull,Volatility 30d,4.29018098698396e-05
+transformer,bull,RSI-14,0.0001307545711513803
+transformer,bull,MACD,2.3875891425013643e-05
+transformer,bull,MACD signal,2.77795645682887e-05
+transformer,bull,Volume ratio,5.401732323351158e-05
+transformer,bull,BB width,8.834503864084632e-05
+transformer,bull,Regime: bull,7.20187139059814e-05
+transformer,bull,Regime: bear,7.539358984648778e-07
+transformer,bull,Regime: high-vol,7.80135569504545e-05
+transformer,bear,Log return,0.0
+transformer,bear,Volatility 10d,0.0
+transformer,bear,Volatility 30d,0.0
+transformer,bear,RSI-14,0.0
+transformer,bear,MACD,0.0
+transformer,bear,MACD signal,0.0
+transformer,bear,Volume ratio,0.0
+transformer,bear,BB width,0.0
+transformer,bear,Regime: bull,0.0
+transformer,bear,Regime: bear,0.0
+transformer,bear,Regime: high-vol,0.0
+transformer,high-vol,Log return,8.499410303159443e-05
+transformer,high-vol,Volatility 10d,8.532043240098096e-05
+transformer,high-vol,Volatility 30d,3.834117353040893e-05
+transformer,high-vol,RSI-14,0.00012819141174426238
+transformer,high-vol,MACD,2.1446273174763156e-05
+transformer,high-vol,MACD signal,2.7160939547792493e-05
+transformer,high-vol,Volume ratio,5.2387872662581796e-05
+transformer,high-vol,BB width,9.07642136111889e-05
+transformer,high-vol,Regime: bull,6.804361759466315e-05
+transformer,high-vol,Regime: bear,7.181242316217283e-07
+transformer,high-vol,Regime: high-vol,7.471565625674218e-05
+gru,bull,Log return,6.341018313539757e-06
+gru,bull,Volatility 10d,9.553980639268681e-06
+gru,bull,Volatility 30d,8.439085841665405e-06
+gru,bull,RSI-14,7.670011420718163e-06
+gru,bull,MACD,6.447940551592206e-06
+gru,bull,MACD signal,8.95942793215184e-06
+gru,bull,Volume ratio,4.875870052644537e-06
+gru,bull,BB width,4.868048476985827e-06
+gru,bull,Regime: bull,5.414135344296256e-06
+gru,bull,Regime: bear,2.2353486468741724e-07
+gru,bull,Regime: high-vol,1.0765832043837128e-05
+gru,bear,Log return,0.0
+gru,bear,Volatility 10d,0.0
+gru,bear,Volatility 30d,0.0
+gru,bear,RSI-14,0.0
+gru,bear,MACD,0.0
+gru,bear,MACD signal,0.0
+gru,bear,Volume ratio,0.0
+gru,bear,BB width,0.0
+gru,bear,Regime: bull,0.0
+gru,bear,Regime: bear,0.0
+gru,bear,Regime: high-vol,0.0
+gru,high-vol,Log return,6.6411543897981774e-06
+gru,high-vol,Volatility 10d,9.293560977058267e-06
+gru,high-vol,Volatility 30d,8.093163023379474e-06
+gru,high-vol,RSI-14,7.080161029765314e-06
+gru,high-vol,MACD,6.450764897656388e-06
+gru,high-vol,MACD signal,9.195273503265516e-06
+gru,high-vol,Volume ratio,4.705232726001066e-06
+gru,high-vol,BB width,4.9368242066689195e-06
+gru,high-vol,Regime: bull,5.616194505320032e-06
+gru,high-vol,Regime: bear,2.2264799080094929e-07
+gru,high-vol,Regime: high-vol,8.802698547175487e-06
+linear,bull,Log return,6.92897508651538e-05
+linear,bull,Volatility 10d,0.00014386087685272546
+linear,bull,Volatility 30d,7.068331835900252e-05
+linear,bull,RSI-14,8.654272442677887e-05
+linear,bull,MACD,5.8627917979447366e-05
+linear,bull,MACD signal,6.158050399525866e-05
+linear,bull,Volume ratio,6.377326920731977e-05
+linear,bull,BB width,0.00013685218824709152
+linear,bull,Regime: bull,0.0002014015120004499
+linear,bull,Regime: bear,1.821569953824705e-06
+linear,bull,Regime: high-vol,0.00021566948450590074
+linear,bear,Log return,0.0
+linear,bear,Volatility 10d,0.0
+linear,bear,Volatility 30d,0.0
+linear,bear,RSI-14,0.0
+linear,bear,MACD,0.0
+linear,bear,MACD signal,0.0
+linear,bear,Volume ratio,0.0
+linear,bear,BB width,0.0
+linear,bear,Regime: bull,0.0
+linear,bear,Regime: bear,0.0
+linear,bear,Regime: high-vol,0.0
+linear,high-vol,Log return,6.866090489899155e-05
+linear,high-vol,Volatility 10d,0.00014171678735589035
+linear,high-vol,Volatility 30d,6.949801988468829e-05
+linear,high-vol,RSI-14,8.039537886540138e-05
+linear,high-vol,MACD,5.846250327691111e-05
+linear,high-vol,MACD signal,6.072050720430955e-05
+linear,high-vol,Volume ratio,6.13316163018953e-05
+linear,high-vol,BB width,0.00013319183301142964
+linear,high-vol,Regime: bull,0.000194347191826167
+linear,high-vol,Regime: bear,1.7370235281188375e-06
+linear,high-vol,Regime: high-vol,0.00020433037092996967

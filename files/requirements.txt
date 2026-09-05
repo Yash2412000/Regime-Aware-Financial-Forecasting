@@ -1,0 +1,8 @@
+numpy
+pandas
+yfinance
+hmmlearn
+scikit-learn
+torch
+nbformat
+jupyter

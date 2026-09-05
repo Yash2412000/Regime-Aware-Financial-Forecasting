@@ -1,0 +1,12 @@
+torch
+torchvision
+torchaudio
+numpy
+pandas
+scikit-learn
+yfinance
+hmmlearn
+shap
+matplotlib
+tqdm
+openpyxl
