@@ -1,0 +1,562 @@
+yvr21@ogg:~/Dissertation$ source .venv/bin/activate
+(.venv) yvr21@ogg:~/Dissertation$ rm -rf results
+(.venv) yvr21@ogg:~/Dissertation$ mkdir results
+(.venv) yvr21@ogg:~/Dissertation$ rm -rf checkpoints
+(.venv) yvr21@ogg:~/Dissertation$ mkdir checkpoints
+(.venv) yvr21@ogg:~/Dissertation$ ls -la final_backup
+total 0
+drwxr-xr-x 5 yvr21 frogs  3 Sep  2 12:39 .
+drwx------ 9 yvr21 frogs 27 Sep  2 15:19 ..
+drwxr-xr-x 2 yvr21 frogs  1 Aug 31 16:59 checkpoints
+drwxr-xr-x 2 yvr21 frogs  0 Aug 31 16:45 results
+drwxr-xr-x 2 yvr21 frogs  0 Aug 31 16:45 shap_outputs
+(.venv) yvr21@ogg:~/Dissertation$ ls -la
+total 558
+drwx------  9 yvr21 frogs     27 Sep  2 15:19  .
+drwx------ 12 yvr21 frogs     16 Aug 31 16:17  ..
+-rw-r--r--  1 yvr21 frogs   5723 Aug 31 19:04  analyse_gates.py
+drwxr-xr-x  4 yvr21 frogs      5 Aug 31 16:45  baseline_backup
+-rw-r--r--  1 yvr21 frogs    137 Sep  2 14:49  baseline_comparison.csv
+-rw-r--r--  1 yvr21 frogs   9699 Aug 31 16:35  baseline.py
+drwxr-xr-x  2 yvr21 frogs      0 Sep  2 15:19  checkpoints
+-rw-r--r--  1 yvr21 frogs  14769 Sep  2 15:17  dataset.py
+-rw-r--r--  1 yvr21 frogs  21209 Aug 31 16:35  Device.docx
+-rw-r--r--  1 yvr21 frogs 202528 Aug 31 16:35  dissertation_execution_plan.pdf
+-rw-r--r--  1 yvr21 frogs   2178 Sep  2 15:03  evaluate_strategy.py
+-rw-r--r--  1 yvr21 frogs  17074 Aug 31 16:35  explain.py
+drwx------  2 yvr21 frogs      6 Jun 25 17:08  files
+-rw-r--r--  1 yvr21 frogs  28418 Aug 31 16:35  files.zip
+drwxr-xr-x  5 yvr21 frogs      3 Sep  2 12:39  final_backup
+-rw-r--r--  1 yvr21 frogs  93035 Sep  2 14:17  gate_analysis.png
+-rw-r--r--  1 yvr21 frogs  86462 Sep  2 14:15  loss_curves.png
+-rw-r--r--  1 yvr21 frogs   3887 Sep  2 14:15  loss_history.csv
+-rw-r--r--  1 yvr21 frogs  11794 Aug 31 16:35  model.py
+-rw-r--r--  1 yvr21 frogs  17863 Aug 31 16:35 'PS C123.docx'
+-rw-r--r--  1 yvr21 frogs  18299 Aug 31 16:35 'PS C1.docx'
+-rw-r--r--  1 yvr21 frogs  13866 Aug 31 16:35 'PS C.docx'
+drwx------  2 yvr21 frogs      6 Sep  2 13:10  __pycache__
+-rw-r--r--  1 yvr21 frogs    103 Aug 25 12:38  requirements.txt
+drwxr-xr-x  2 yvr21 frogs      0 Sep  2 15:18  results
+-rw-r--r--  1 yvr21 frogs   2624 Sep  2 12:43  smoke_test.py
+-rw-r--r--  1 yvr21 frogs   2213 Sep  2 15:03  trading_strategy.py
+-rw-r--r--  1 yvr21 frogs  13935 Sep  2 15:14  train.py
+drwx------  9 yvr21 frogs     10 Aug 25 12:42  .venv
+
+(.venv) yvr21@ogg:~/Dissertation$ python dataset.py
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920495]
+ [ 0.00024406  0.01749612]
+ [-0.00178545  0.03932748]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+
+Batch shapes — X: torch.Size([64, 30, 11]), y: torch.Size([64])
+Ticker sample: ('HSBA.L', 'AZN.L', 'AZN.L', 'AZN.L', 'AZN.L')
+HMM means (bear / high-vol / bull, original scale):
+[[ 0.00094603  0.00920495]
+ [ 0.00024406  0.01749612]
+ [-0.00178545  0.03932748]]
+ 
+(.venv) yvr21@ogg:~/Dissertation$ python train.py --epochs 30
+
+Device: cuda
+Loading data...
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920495]
+ [ 0.00024407  0.01749611]
+ [-0.00178547  0.03932742]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+/mnt/vurm/homes/homes/yvr21/Dissertation/model.py:96: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+Experts: ['lstm', 'transformer', 'gru', 'linear']
+Model params: 966,440
+
+Epoch 001/30  [123.0s]  Train loss=0.0050  Val loss=0.0008  Val MAE=0.03696  Val DA=0.426
+  Saved best model (val loss=0.0008)
+Epoch 002/30  [116.4s]  Train loss=0.0016  Val loss=0.0006  Val MAE=0.03150  Val DA=0.434
+  Saved best model (val loss=0.0006)
+Epoch 003/30  [114.3s]  Train loss=0.0010  Val loss=0.0006  Val MAE=0.02792  Val DA=0.447
+Epoch 004/30  [101.1s]  Train loss=0.0008  Val loss=0.0004  Val MAE=0.02494  Val DA=0.446
+  Saved best model (val loss=0.0004)
+Epoch 005/30  [108.7s]  Train loss=0.0006  Val loss=0.0003  Val MAE=0.02334  Val DA=0.463
+  Saved best model (val loss=0.0003)
+Epoch 006/30  [112.2s]  Train loss=0.0005  Val loss=0.0003  Val MAE=0.02212  Val DA=0.470
+  Saved best model (val loss=0.0003)
+Epoch 007/30  [114.1s]  Train loss=0.0004  Val loss=0.0003  Val MAE=0.02133  Val DA=0.480
+  Saved best model (val loss=0.0003)
+Epoch 008/30  [111.7s]  Train loss=0.0004  Val loss=0.0004  Val MAE=0.02117  Val DA=0.498
+Epoch 009/30  [123.5s]  Train loss=0.0004  Val loss=0.0003  Val MAE=0.02045  Val DA=0.505
+  Saved best model (val loss=0.0003)
+Epoch 010/30  [108.2s]  Train loss=0.0004  Val loss=0.0002  Val MAE=0.02010  Val DA=0.522
+  Saved best model (val loss=0.0002)
+Epoch 011/30  [111.5s]  Train loss=0.0004  Val loss=0.0002  Val MAE=0.01971  Val DA=0.528
+  Saved best model (val loss=0.0002)
+Epoch 012/30  [103.7s]  Train loss=0.0003  Val loss=0.0003  Val MAE=0.01972  Val DA=0.531
+Epoch 013/30  [113.6s]  Train loss=0.0003  Val loss=0.0002  Val MAE=0.01953  Val DA=0.541
+Epoch 014/30  [119.2s]  Train loss=0.0003  Val loss=0.0002  Val MAE=0.01935  Val DA=0.558
+  Saved best model (val loss=0.0002)
+Epoch 015/30  [124.9s]  Train loss=0.0003  Val loss=0.0002  Val MAE=0.01931  Val DA=0.559
+  Saved best model (val loss=0.0002)
+Epoch 016/30  [121.1s]  Train loss=0.0003  Val loss=0.0002  Val MAE=0.01928  Val DA=0.559
+  Saved best model (val loss=0.0002)
+Epoch 017/30  [119.8s]  Train loss=0.0003  Val loss=0.0002  Val MAE=0.01921  Val DA=0.570
+  Saved best model (val loss=0.0002)
+Epoch 018/30  [121.1s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01922  Val DA=0.569
+Epoch 019/30  [118.3s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01921  Val DA=0.570
+Epoch 020/30  [115.4s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01918  Val DA=0.577
+Epoch 021/30  [120.7s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01918  Val DA=0.579
+  Saved best model (val loss=0.0002)
+Epoch 022/30  [123.2s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01917  Val DA=0.581
+  Saved best model (val loss=0.0002)
+Epoch 023/30  [120.4s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01917  Val DA=0.580
+  Saved best model (val loss=0.0002)
+Epoch 024/30  [122.9s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01916  Val DA=0.581
+  Saved best model (val loss=0.0002)
+Epoch 025/30  [118.2s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01916  Val DA=0.582
+  Saved best model (val loss=0.0002)
+Epoch 026/30  [111.0s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01916  Val DA=0.583
+  Saved best model (val loss=0.0002)
+Epoch 027/30  [119.6s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01915  Val DA=0.583
+Epoch 028/30  [110.6s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01915  Val DA=0.585
+Epoch 029/30  [116.8s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01915  Val DA=0.584
+Epoch 030/30  [111.0s]  Train loss=0.0002  Val loss=0.0002  Val MAE=0.01915  Val DA=0.584
+
+Loss history saved to loss_history.csv
+Loss curves saved to loss_curves.png
+
+Saved:
+ results/predictions.npy
+ results/actual_returns.npy
+ results/test_tickers.npy
+
+-- Test Results --------------------------------------
+  MAE              : 0.02228
+  RMSE             : 0.03178
+  Directional Acc  : 0.582
+  MAPE             : 124.11%  (unstable near y=0 — see smape below)
+  SMAPE            : 153.84%
+  Forecast Loss    : 0.0002
+  Regime Loss      : 0.0011
+  Diversity Loss   : 0.0000
+  
+  
+(.venv) yvr21@ogg:~/Dissertation$ python analyse_gates.py
+Loading data (rebuilds the same train/val/test split as training)...
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920496]
+ [ 0.00024407  0.01749613]
+ [-0.00178549  0.03932755]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+/mnt/vurm/homes/homes/yvr21/Dissertation/model.py:96: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+Loaded checkpoint from epoch 26, experts=['lstm', 'transformer', 'gru', 'linear']
+
+================================================================
+GATE WEIGHT BY DOMINANT REGIME  (test set)
+================================================================
+Regime               lstm  transformer          gru       linear   n_samples
+----------------------------------------------------------------------------
+bull                0.118        0.125        0.127        0.630       20246
+bear                0.346        0.161        0.164        0.330        1110
+high-vol            0.629        0.126        0.125        0.120        7480
+----------------------------------------------------------------------------
+overall             0.260        0.126        0.128        0.486
+
+Mean cross-regime std of gate weights: 0.1133
+-> Gate weights visibly shift across regimes — supports the regime-aware claim.
+
+Plot saved to gate_analysis.png
+
+(.venv) yvr21@ogg:~/Dissertation$ python baseline.py --skip-lstm --skip-arima
+Device: cuda
+
+[1/3] Ensemble average (unweighted mean of the 4 trained experts)
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920495]
+ [ 0.00024406  0.01749612]
+ [-0.00178544  0.03932747]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+/mnt/vurm/homes/homes/yvr21/Dissertation/model.py:96: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+  Ensemble-avg    MAE=0.02410  RMSE=0.03336  DA=0.518  MAPE= 118.88%  SMAPE=173.01%
+
+Comparison table saved to baseline_comparison.csv
+       model      mae     rmse  dir_acc       mape      smape
+Ensemble-avg 0.024104 0.033361  0.51814 118.882763 173.013604
+
+
+(.venv) yvr21@ogg:~/Dissertation$ python baseline.py --skip-ensemble --skip-arima
+Device: cuda
+
+[2/3] Single LSTM baseline (no gate, no other experts, forecast loss only)
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920495]
+ [ 0.00024407  0.01749609]
+ [-0.00178546  0.03932737]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+  Epoch 001/30  [46.6s]  Val loss=0.0002
+  Epoch 002/30  [42.1s]  Val loss=0.0002
+  Epoch 003/30  [41.5s]  Val loss=0.0002
+  Epoch 004/30  [51.7s]  Val loss=0.0001
+  Epoch 005/30  [50.3s]  Val loss=0.0001
+  Epoch 006/30  [54.6s]  Val loss=0.0001
+  Epoch 007/30  [48.8s]  Val loss=0.0001
+  Epoch 008/30  [53.7s]  Val loss=0.0001
+  Epoch 009/30  [48.0s]  Val loss=0.0001
+  Epoch 010/30  [49.9s]  Val loss=0.0001
+  Epoch 011/30  [55.4s]  Val loss=0.0001
+  Epoch 012/30  [49.4s]  Val loss=0.0001
+  Epoch 013/30  [43.5s]  Val loss=0.0001
+  Epoch 014/30  [50.1s]  Val loss=0.0001
+  Epoch 015/30  [45.4s]  Val loss=0.0001
+  Epoch 016/30  [41.1s]  Val loss=0.0001
+  Epoch 017/30  [43.3s]  Val loss=0.0001
+  Epoch 018/30  [42.4s]  Val loss=0.0001
+  Epoch 019/30  [48.7s]  Val loss=0.0001
+  Epoch 020/30  [46.4s]  Val loss=0.0001
+  Epoch 021/30  [44.8s]  Val loss=0.0001
+  Epoch 022/30  [50.7s]  Val loss=0.0001
+  Epoch 023/30  [53.6s]  Val loss=0.0001
+  Epoch 024/30  [58.1s]  Val loss=0.0001
+  Epoch 025/30  [46.2s]  Val loss=0.0001
+  Epoch 026/30  [54.7s]  Val loss=0.0001
+  Epoch 027/30  [54.9s]  Val loss=0.0001
+  Epoch 028/30  [50.4s]  Val loss=0.0001
+  Epoch 029/30  [51.7s]  Val loss=0.0001
+  Epoch 030/30  [43.0s]  Val loss=0.0001
+  Single-LSTM     MAE=0.02228  RMSE=0.03175  DA=0.584  MAPE= 126.88%  SMAPE=150.85%
+
+Comparison table saved to baseline_comparison.csv
+      model      mae     rmse  dir_acc      mape      smape
+Single-LSTM 0.022277 0.031745 0.583611 126.88098 150.845683
+
+(.venv) yvr21@ogg:~/Dissertation$ python baseline.py --skip-ensemble --skip-lstm
+Device: cuda
+
+[3/3] ARIMA baseline (per-ticker, walk-forward, 5-step-ahead)
+  Fitting ARIMA(2, 0, 2) on SPY...
+  Fitting ARIMA(2, 0, 2) on QQQ...
+  Fitting ARIMA(2, 0, 2) on AAPL...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  Fitting ARIMA(2, 0, 2) on MSFT...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  Fitting ARIMA(2, 0, 2) on ^FTSE...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  Fitting ARIMA(2, 0, 2) on HSBA.L...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:737: ConvergenceWarning: Maximum Likelihood optimization failed to converge. Check mle_retvals
+  mlefit = super().fit(
+  Fitting ARIMA(2, 0, 2) on AZN.L...
+  Fitting ARIMA(2, 0, 2) on ^NSEI...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  Fitting ARIMA(2, 0, 2) on TCS.NS...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  Fitting ARIMA(2, 0, 2) on INFY.NS...
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-stationary starting autoregressive parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+/mnt/vurm/homes/homes/yvr21/Dissertation/.venv/lib/python3.12/site-packages/statsmodels/tsa/statespace/mlemodel.py:679: EstimationWarning: Non-invertible starting MA parameters found. Using zeros as starting parameters.
+  start_params = self.start_params
+  ARIMA           MAE=0.02271  RMSE=0.03204  DA=0.517  MAPE= 118.66%  SMAPE=164.28%
+
+Comparison table saved to baseline_comparison.csv
+model     mae     rmse  dir_acc     mape      smape
+ARIMA 0.02271 0.032039 0.516831 118.6553 164.279926
+
+(.venv) yvr21@ogg:~/Dissertation$ ls -la results
+total 1015
+drwxr-xr-x 2 yvr21 frogs      3 Sep  2 16:24 .
+drwx------ 9 yvr21 frogs     27 Sep  2 15:19 ..
+-rw-r--r-- 1 yvr21 frogs 115472 Sep  2 16:24 actual_returns.npy
+-rw-r--r-- 1 yvr21 frogs 115472 Sep  2 16:24 predictions.npy
+-rw-r--r-- 1 yvr21 frogs 807536 Sep  2 16:24 test_tickers.npy
+
+(.venv) yvr21@ogg:~/Dissertation$ python evaluate_strategy.py
+
+========== Trading Evaluation ==========
+Final Capital   : $13188.30
+Strategy ROI    : 31.88%
+---------------------------------------
+Trades          : 233
+Winning Trades  : 149
+Losing Trades   : 84
+Win Rate        : 63.95%
+Sharpe Ratio    : 0.291
+Max Drawdown    : -16.78%
+---------------------------------------
+BUY signals     : 509
+SELL signals    : 135
+HOLD signals    : 28192
+
+(.venv) yvr21@ogg:~/Dissertation$ python explain.py --checkpoint checkpoints/best_model.pt
+Device: cuda
+Background samples: 100 | Explain samples: 300
+
+Loading data...
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920496]
+ [ 0.00024407  0.01749612]
+ [-0.00178549  0.03932747]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+
+Collecting 300 test samples...
+  Regime distribution — bull: 263  bear: 0  high-vol: 37
+
+Loading checkpoint...
+  Loaded checkpoint from epoch 26, experts=['lstm', 'transformer', 'gru', 'linear']
+
+Building background set (100 train samples)...
+
+── Expert SHAP: LSTM ──
+  Computing GradientExplainer SHAP...
+  Plotting beeswarm (overall)...
+  Saved shap_outputs/shap_expert_lstm_overall.png
+  Plotting by regime...
+  Saved shap_outputs/shap_expert_lstm_by_regime.png
+
+── Expert SHAP: TRANSFORMER ──
+  Computing GradientExplainer SHAP...
+  Plotting beeswarm (overall)...
+  Saved shap_outputs/shap_expert_transformer_overall.png
+  Plotting by regime...
+  Saved shap_outputs/shap_expert_transformer_by_regime.png
+
+── Expert SHAP: GRU ──
+  Computing GradientExplainer SHAP...
+  Plotting beeswarm (overall)...
+  Saved shap_outputs/shap_expert_gru_overall.png
+  Plotting by regime...
+  Saved shap_outputs/shap_expert_gru_by_regime.png
+
+── Expert SHAP: LINEAR ──
+  Computing GradientExplainer SHAP...
+  Plotting beeswarm (overall)...
+  Saved shap_outputs/shap_expert_linear_overall.png
+  Plotting by regime...
+  Saved shap_outputs/shap_expert_linear_by_regime.png
+
+── Gate SHAP ──
+  Computing GradientExplainer SHAP on gate outputs...
+  Plotting gate SHAP heatmap...
+  Saved shap_outputs/shap_gate_by_expert.png
+  Plotting gate SHAP by regime...
+  Saved shap_outputs/shap_gate_by_regime.png
+
+SHAP summary table saved to shap_outputs/shap_summary.csv
+
+── Top 3 features per expert per regime ──
+  lstm         | bull     | Regime: high-vol (0.0000), Regime: bull (0.0000), Volatility 10d (0.0000)
+  lstm         | bear     | Log return (0.0000), Volatility 10d (0.0000), Volatility 30d (0.0000)
+  lstm         | high-vol | Regime: high-vol (0.0000), Regime: bull (0.0000), Volatility 10d (0.0000)
+  transformer  | bull     | RSI-14 (0.0001), BB width (0.0001), Volatility 10d (0.0001)
+  transformer  | bear     | Log return (0.0000), Volatility 10d (0.0000), Volatility 30d (0.0000)
+  transformer  | high-vol | RSI-14 (0.0001), BB width (0.0001), Volatility 10d (0.0001)
+  gru          | bull     | Regime: high-vol (0.0000), Volatility 10d (0.0000), MACD signal (0.0000)
+  gru          | bear     | Log return (0.0000), Volatility 10d (0.0000), Volatility 30d (0.0000)
+  gru          | high-vol | Volatility 10d (0.0000), MACD signal (0.0000), Regime: high-vol (0.0000)
+  linear       | bull     | Regime: high-vol (0.0002), Regime: bull (0.0002), Volatility 10d (0.0001)
+  linear       | bear     | Log return (0.0000), Volatility 10d (0.0000), Volatility 30d (0.0000)
+  linear       | high-vol | Regime: high-vol (0.0002), Regime: bull (0.0002), Volatility 10d (0.0001)
+
+✓ SHAP analysis complete. Outputs in: shap_outputs/
+  Files produced:
+    shap_expert_gru_by_regime.png
+    shap_expert_gru_overall.png
+    shap_expert_linear_by_regime.png
+    shap_expert_linear_overall.png
+    shap_expert_lstm_by_regime.png
+    shap_expert_lstm_overall.png
+    shap_expert_transformer_by_regime.png
+    shap_expert_transformer_overall.png
+    shap_gate_by_expert.png
+    shap_gate_by_regime.png
+    shap_summary.csv
+
+(.venv) yvr21@ogg:~/Dissertation$ ls -lh checkpoints
+total 4.0M
+-rw-r--r-- 1 yvr21 frogs 4.0M Sep  2 16:16 best_model.pt
+
+(.venv) yvr21@ogg:~/Dissertation$ ls -lh results
+total 1015K
+-rw-r--r-- 1 yvr21 frogs 113K Sep  2 16:24 actual_returns.npy
+-rw-r--r-- 1 yvr21 frogs 113K Sep  2 16:24 predictions.npy
+-rw-r--r-- 1 yvr21 frogs 789K Sep  2 16:24 test_tickers.npy
+
+(.venv) yvr21@ogg:~/Dissertation$ ls -lh shap_outputs
+total 1.1M
+-rw-r--r-- 1 yvr21 frogs  73K Sep  2 17:49 shap_expert_gru_by_regime.png
+-rw-r--r-- 1 yvr21 frogs 169K Sep  2 17:49 shap_expert_gru_overall.png
+-rw-r--r-- 1 yvr21 frogs  77K Sep  2 17:49 shap_expert_linear_by_regime.png
+-rw-r--r-- 1 yvr21 frogs 192K Sep  2 17:49 shap_expert_linear_overall.png
+-rw-r--r-- 1 yvr21 frogs  77K Sep  2 17:46 shap_expert_lstm_by_regime.png
+-rw-r--r-- 1 yvr21 frogs 119K Sep  2 17:46 shap_expert_lstm_overall.png
+-rw-r--r-- 1 yvr21 frogs  76K Sep  2 17:47 shap_expert_transformer_by_regime.png
+-rw-r--r-- 1 yvr21 frogs 180K Sep  2 17:47 shap_expert_transformer_overall.png
+-rw-r--r-- 1 yvr21 frogs  75K Sep  2 18:00 shap_gate_by_expert.png
+-rw-r--r-- 1 yvr21 frogs  83K Sep  2 18:00 shap_gate_by_regime.png
+-rw-r--r-- 1 yvr21 frogs 5.4K Sep  2 18:00 shap_summary.csv
+
+(.venv) yvr21@ogg:~/Dissertation$ python analyse_gates.py --checkpoint checkpoints/best_model.pt
+Loading data (rebuilds the same train/val/test split as training)...
+  Downloading SPY...
+  Downloading QQQ...
+  Downloading AAPL...
+  Downloading MSFT...
+  Downloading ^FTSE...
+  Downloading HSBA.L...
+  Downloading AZN.L...
+  Downloading ^NSEI...
+  Downloading TCS.NS...
+  Downloading INFY.NS...
+
+Fitting HMM on training split only...
+  HMM converged. States ordered: bear / high-vol / bull
+  Means (original scale):
+    [[ 0.00094603  0.00920495]
+ [ 0.00024406  0.0174961 ]
+ [-0.00178547  0.03932744]]
+
+Dataset summary:
+  Features : 11
+  Train    : 134,678 sequences
+  Val      : 28,836 sequences
+  Test     : 28,836 sequences
+/mnt/vurm/homes/homes/yvr21/Dissertation/model.py:96: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+Loaded checkpoint from epoch 26, experts=['lstm', 'transformer', 'gru', 'linear']
+
+================================================================
+GATE WEIGHT BY DOMINANT REGIME  (test set)
+================================================================
+Regime               lstm  transformer          gru       linear   n_samples
+----------------------------------------------------------------------------
+bull                0.118        0.125        0.127        0.630       20246
+bear                0.346        0.161        0.164        0.330        1110
+high-vol            0.629        0.126        0.125        0.120        7480
+----------------------------------------------------------------------------
+overall             0.260        0.126        0.128        0.486
+
+Mean cross-regime std of gate weights: 0.1133
+-> Gate weights visibly shift across regimes — supports the regime-aware claim.
+
+Plot saved to gate_analysis.png
